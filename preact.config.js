@@ -1,10 +1,16 @@
 // Packages
 import envVars from 'preact-cli-plugin-env-vars'
+import path from 'path'
+
+// Config
+import * as config from './config.json'
 
 /**
  * @file Preact configuration
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
  */
+
+const { babel, template } = config
 
 /**
  * Function that mutates the original webpack config.
@@ -17,18 +23,30 @@ import envVars from 'preact-cli-plugin-env-vars'
  * working with the webpack config.
  */
 export default function (config, env, helpers) {
-  // Initialize environment variables
+  // Initialize environment variables for the application
+  // Application environment variables are prefixed with PREACT_APP_
   envVars(config, env, helpers)
 
-  // Babel config
-  let { rule } = helpers.getLoadersByName(config, 'babel-loader')[0]
-  let babel_config = rule.options
+  // Update public path based on Node environment
+  config.output.publicPath = config.public
 
-  let plugins = [
-    '@babel/plugin-proposal-export-default-from',
-    '@babel/plugin-proposal-export-namespace-from',
-    '@babel/plugin-proposal-throw-expressions'
-  ]
+  // Change hosting directory
+  if (env.development) config.output.path = path.resolve(__dirname, 'public')
 
-  plugins.forEach(plugin => babel_config.plugins.push(plugin))
+  // Update Babel configuration
+  const { rule } = helpers.getLoadersByName(config, 'babel-loader')[0]
+
+  const { plugins, presets } = babel
+
+  plugins.forEach(plugin => rule.options.plugins.push(plugin))
+  presets.forEach(preset => rule.options.presets.push(preset))
+
+  // Set HTML template and options based on Node environment
+  const html = helpers.getPluginsByName(config, 'HtmlWebpackPlugin')[0] || {}
+
+  if (html && html.plugin) {
+    html.plugin.options.publicPath = config.public
+  }
+
+  helpers.setHtmlTemplate(config, template)
 }

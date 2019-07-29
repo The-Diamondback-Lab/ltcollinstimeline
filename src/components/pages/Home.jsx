@@ -7,11 +7,13 @@ import { Hero, Timeline } from '../organisms'
 import { FeatureEvent } from '../templates'
 
 // Event data
-import campus from '../../assets/data/campus.events.json'
-import legal from '../../assets/data/legal.events.json'
+import campus from '../../api/campus.events.json'
+import legal from '../../api/legal.events.json'
 
 /**
  * Preact component representing the homepage.
+ *
+ * ! @todo Add documentation
  *
  * @extends Component
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
@@ -63,18 +65,16 @@ export default class Home extends Component {
         <Timeline
           id='timeline0'
           events={{
-            campus: this.events(campus, 0, 2),
-            legal: this.events(legal, 0, 2)
+            campus: props.events(campus, 0, 2),
+            legal: props.events(legal, 0, 2)
           }}
         />
         <FeatureEvent id='feature0' class='ui-full' event={legal[0]} />
         <Timeline events={{
-          campus: this.events(campus, 3, campus.length),
-          legal: this.events(legal, 1, legal.length)
+          campus: props.events(campus, 3, campus.length),
+          legal: props.events(legal, 1, legal.length)
         }} />
       </main>
     )
   }
-
-  events = (events, start, end) => events.slice(start, end)
 }

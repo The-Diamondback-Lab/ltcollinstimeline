@@ -2,7 +2,7 @@
 import 'preact/debug'
 
 // Application
-import App from './components/App.jsx'
+import App from './components'
 
 /**
  * @file Application entry point

@@ -48,7 +48,7 @@ export default class Header extends Component {
    * @param {string} props.container.id - Container element id
    * @param {string} props.container.classes - Extra container classes
    * @param {object} state - Component state
-   * @returns {HTMLElement} HTML <footer> element.
+   * @returns {HTMLElement} HTML <header> element
    */
   render(props, state) {
     const style = (`ado-header ${props.class ? props.class : ''}`).trim()
@@ -59,8 +59,12 @@ export default class Header extends Component {
     return (
       <header id={id} class={style}>
         <UIContext.Consumer>
-          {({ menu_open, mobile, scrolled }) => {
-            scrolled ? $el.addClass('ui-sticky') : $el.removeClass('ui-sticky')
+          {({ near_bottom, scrolled }) => {
+            if (scrolled && !near_bottom) {
+              $el.addClass('ui-sticky')
+            } else {
+              $el.removeClass('ui-sticky')
+            }
 
             if (!container) return children
 

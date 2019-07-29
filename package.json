@@ -1,33 +1,60 @@
 {
   "name": "@dbklab/ltcollinstimeline",
-  "version": "1.0.0",
   "description": "On the night of May 19, 2017, two days away from graduation, 2nd Lt. Richard Collins was stabbed to death on the University of Maryland's campus while waiting for his Uber. Two years later, former student Sean Urbanski is is awaiting trial on hate crime and murder charges in connection Collins' death, and is set is to go to trial July 22nd, 2019. Even before Collins' death, racial tensions have been high at the University, with several hate crimes dirtying the University's history. The Lt. Collins Timeline is a special project created with the goal of highlighting not only the events leading up to the Lieutenant's death, but what the University has done since his untimely passing to address campus hate crimes and promote an environment where students of all backgrounds feel safe and accepted. Moreover, we'd like to emphasize how tragic Collins' death is, and just how ostracized students of color on UMD's campus feel.",
+  "version": "1.0.0",
+  "author": "Lexus Drumgold <lex@lexusdrumgold.design> (https://lexusdrumgold.design)",
+  "homepage": "https://github.com/The-Diamondback-Lab/ltcollinstimeline#readme",
+  "license": "BSD-3-Clause",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/The-Diamondback-Lab/ltcollinstimeline.git"
+  },
+  "bugs": {
+    "url": "https://github.com/The-Diamondback-Lab/ltcollinstimeline/issues"
+  },
+  "keywords": [
+    "google firebase",
+    "preact",
+    "sass"
+  ],
   "scripts": {
+    "lint": "eslint ./src/**/*.js ./src/components/**/*.jsx --fix",
     "preinstall": "rm -rf node_modules",
-    "dev": "rm -rf ./build && NODE_ENV=development && preact watch --template ./src/public/index.html -p 3000",
-    "build": "rm -rf ./build && NODE_ENV=production preact build --clean -p --no-prerender --template ./src/public/index.html",
-    "now-build": "npm run build",
-    "start": "npm run build && now"
+    "dev": "clear && NODE_ENV=development preact watch --rhl --json --p 3000",
+    "pretest": "clear && NODE_ENV=test clear",
+    "test": "jest --detectOpenHandles --passWithNoTests",
+    "prebuild": "rm -rf ./build",
+    "build": "preact build --no-prerender",
+    "preserve": "npm install && NODE_ENV=test npm run build",
+    "serve": "firebase serve --only hosting",
+    "prestart": "npm install && NODE_ENV=production npm run build",
+    "start": "firebase serve --only hosting",
+    "deploy": "firebase deploy --only hosting"
   },
   "dependencies": {
     "@feathersjs/errors": "^3.3.6",
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "firebase": "^6.2.4",
+    "flamelink": "^1.0.0-alpha.19",
+    "isomorphic-unfetch": "^3.0.0",
     "jquery": "^3.4.1",
     "preact": "^10.0.0-beta.2",
-    "preact-cli-plugin-env-vars": "^1.2.1"
+    "preact-render-to-string": "^4.1.0",
+    "preact-router": "3.0.0",
+    "react-dfp": "^0.13.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
+    "@babel/core": "^7.5.4",
     "@babel/plugin-proposal-class-properties": "^7.4.0",
     "@babel/plugin-proposal-export-default-from": "^7.2.0",
     "@babel/plugin-proposal-export-namespace-from": "^7.2.0",
     "@babel/plugin-proposal-throw-expressions": "^7.2.0",
-    "@storybook/preact": "^5.1.1",
     "babel-eslint": "^11.0.0-beta.0",
     "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.6",
+    "dotenv": "^8.0.0",
     "eslint": "^5.16.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-config-standard-preact": "^1.1.6",
@@ -41,52 +68,16 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.7.1",
     "node-sass": "4.11.0",
-    "now": "^15.0.8",
     "preact-cli": "3.0.0-next.19",
+    "preact-cli-plugin-env-vars": "^1.2.1",
     "preact-render-spy": "^1.2.1",
-    "sass-loader": "7.1.0"
+    "sass-loader": "7.1.0",
+    "webpack": "^4.35.3"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/The-Diamondback-Lab/ltcollinstimeline.git"
-  },
-  "keywords": [
-    "firebase",
-    "google firebase",
-    "now",
-    "preact",
-    "sass",
-    "zeit now"
-  ],
-  "author": "Lexus Drumgold <lex@lexusdrumgold.design> (https://lexusdrumgold.design)",
-  "license": "BSD-3-Clause",
-  "bugs": {
-    "url": "https://github.com/The-Diamondback-Lab/ltcollinstimeline/issues"
-  },
-  "homepage": "https://github.com/The-Diamondback-Lab/ltcollinstimeline#readme",
   "browserslist": [
     ">1%",
     "last 4 versions",
     "Firefox ESR",
     "not ie < 11"
-  ],
-  "eslintConfig": {
-    "extends": [
-      "plugin:jest/recommended",
-      "standard",
-      "standard-preact"
-    ],
-    "parser": "babel-eslint",
-    "parserOptions": {
-      "ecmaVersion": 6,
-      "sourceType": "module"
-    },
-    "rules": {
-      "camelcase": 0,
-      "space-before-function-paren": 0
-    }
-  },
-  "eslintIgnore": [
-    "build/*"
   ]
 }

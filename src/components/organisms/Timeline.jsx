@@ -1,5 +1,8 @@
 // Packages
-import { h, Component } from 'preact'
+import { h, Component, Fragment } from 'preact'
+
+// Context
+import { UIContext } from '../context'
 
 // Components
 import { Container } from '../atoms'
@@ -14,7 +17,6 @@ import { Event } from '../templates'
 export default class Timeline extends Component {
   /**
    * Renders a timeline section with the base class 'ado-timeline'.
-   *
    *
    * @param {object} props - Component properties
    * @param {string} props.class - Space delimitted list of extra classes
@@ -32,11 +34,19 @@ export default class Timeline extends Component {
     return (
       <section id={id} class={style}>
         <Container>
-          <TimelineColumn class='ui-left ui-stretch' events={campus} />
-          <div class='timeline-divider ui-stretch' />
-          <TimelineColumn
-            id={'legal'} class='ui-right ui-stretch' events={legal}
-          />
+          <UIContext.Consumer>
+            {({ mobile }) => {
+              return mobile
+                ? <TimelineColumn class='ui-stretch' events={this.events()} />
+                : <Fragment>
+                  <TimelineColumn class='ui-left ui-stretch' events={campus} />
+                  <div class='timeline-divider ui-stretch' />
+                  <TimelineColumn
+                    id='legal' class='ui-right ui-stretch' events={legal}
+                  />
+                </Fragment>
+            }}
+          </UIContext.Consumer>
         </Container>
       </section>
     )

@@ -1,0 +1,31 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "jest": true,
+    "jquery": true
+  },
+  "extends": [
+    "plugin:jest/recommended",
+    "standard",
+    "standard-preact"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "babelOptions": {
+      "configFile": "./babel.config.js"
+    },
+    "ecmaFeatures": {
+      "impliedStrict": true,
+      "jsx": true
+    },
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "root": true,
+  "rules": {
+    "camelcase": 0,
+    "space-before-function-paren": 0
+  }
+}

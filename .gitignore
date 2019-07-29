@@ -1,6 +1,15 @@
 
-# Created by https://www.gitignore.io/api/node,macos
-# Edit at https://www.gitignore.io/?templates=node,macos
+# Created by https://www.gitignore.io/api/node,macos,firebase
+# Edit at https://www.gitignore.io/?templates=node,macos,firebase
+
+### Firebase ###
+.idea
+**/node_modules/*
+# **/.firebaserc
+
+### Firebase Patch ###
+.runtimeconfig.json
+.firebase/
 
 ### macOS ###
 # General
@@ -53,6 +62,7 @@ lib-cov
 
 # Coverage directory used by tools like istanbul
 coverage
+*.lcov
 
 # nyc test coverage
 .nyc_output
@@ -66,8 +76,8 @@ bower_components
 # node-waf configuration
 .lock-wscript
 
-# Build files
-build
+# Compiled binary addons (https://nodejs.org/api/addons.html)
+build/Release
 
 # Dependency directories
 node_modules/
@@ -75,6 +85,9 @@ jspm_packages/
 
 # TypeScript v1 declaration files
 typings/
+
+# TypeScript cache
+*.tsbuildinfo
 
 # Optional npm cache directory
 .npm
@@ -116,4 +129,7 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
-# End of https://www.gitignore.io/api/node,macos
+# Build files
+build/
+
+# End of https://www.gitignore.io/api/node,macos,firebase

@@ -1,0 +1,38 @@
+{
+  "hosting": {
+    "public": "public/",
+    "predeploy": [
+      "NODE_ENV=production npm run build"
+    ],
+    "redirects": [
+      {
+        "source": "/:year/:month/:day/:title",
+        "destination": "https://dbknews.com/:year/:month/:day/:title",
+        "type": 301
+      },
+      {
+        "source": "/repo",
+        "destination": "https://github.com/The-Diamondback-Lab/ltcollinstimeline",
+        "type": 301
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "ignore": [
+      "firebase.json",
+      "jest.config.js",
+      "now.json",
+      "preact.config.js",
+      "prerender-urls.json",
+      "**/.*",
+      "**/node_modules/**",
+      "**/tests/**"
+    ]
+  }
+}

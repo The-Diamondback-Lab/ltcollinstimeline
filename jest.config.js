@@ -17,10 +17,15 @@ module.exports = {
     '^./style$': 'identity-obj-proxy',
     '^preact$': '<rootDir>/node_modules/preact/dist/preact.min.js'
   },
+  roots: [
+    '<rootDir>'
+  ],
+  testRegex: '(/(__tests__|tests)/.*|(\\.|/)(test|spec))\\.js?$',
   testPathIgnorePatterns: [
     '/node_modules/',
-    '<rootDir>/tests/__mocks__/*'
+    '<rootDir>/tests/__mocks__/*',
+    '<rootDir>/tests/__samples__/*'
   ],
-  testRegex: '(/(__tests__|tests)/.*|(\\.|/)(test|spec))\\.jsx?$',
+  testURL: 'http://localhost:5000',
   verbose: true
 }

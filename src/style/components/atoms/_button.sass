@@ -8,7 +8,7 @@
 
 /// Button component font sizes
 /// @type List
-$button-font-sizes: ('default': 16, 'xxl': 22)
+$button-font-sizes: ('small': 14, 'regular': 16, 'large': 18)
 
 // Default button
 // 1. Style &:hover, &:active, &:focus -> add cursor and increase font weight
@@ -22,10 +22,14 @@ $button-font-sizes: ('default': 16, 'xxl': 22)
 
   +flex(row, center, center)
   +respond-to($breakpoint-xxl, min)
-    font-size: size(map-get($button-font-sizes, xxl))
+    font-size: size(map-get($button-font-sizes, large))
 
 
-  font-size: size(map-get($button-font-sizes, default))
+  +respond-to($breakpoint-schmedium)
+    font-size: size(map-get($button-font-sizes, small))
+
+
+  font-size: size(map-get($button-font-sizes, regular))
 
   &:disabled
     +set-bkg-color-and-hover($light-gray)

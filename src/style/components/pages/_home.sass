@@ -53,6 +53,12 @@
 
 .hero-content
   +flex(column, center, space-between)
+  +respond-to($breakpoint-schmedium)
+    +size(100%)
+
+    justify-content: flex-end
+
+
   +size(65%)
 
 .hero-content-main,
@@ -62,6 +68,13 @@
 
 .hero-content-main
   +flex(column, center, center)
+  +respond-to($breakpoint-schmedium)
+    font-size: size(16)
+
+
+  +respond-to($breakpoint-small)
+    font-size: size(14)
+
 
   color: $white
   text-align: center
@@ -83,7 +96,15 @@
     margin: 0 size(4)
 
 .hero-content-footer
-  margin-bottom: size(60)
+  +respond-to($breakpoint-schmedium)
+    margin-top: size(150)
+
+
+  +respond-to($breakpoint-small)
+    font-size: size(12)
+
+
+  margin: size(60) 0
 
   > .ada-link
     color: $light
@@ -96,6 +117,9 @@
 
 .footer-links
   color: $light-gray
+
+  > .ada-icon
+    margin-left: size(4)
 
   > .ada-link
     +event
