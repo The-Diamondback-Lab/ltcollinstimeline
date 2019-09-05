@@ -1,7 +1,7 @@
 // Components
-import Footer from './Footer'
-import Header from './Header'
-import Hero from './Hero'
+import Footer, { SiteFooter } from './Footer'
+import Header, { SiteHeader } from './Header'
+import Hero, { SiteHero } from './Hero'
 import Timeline from './Timeline'
 
 /**
@@ -10,4 +10,4 @@ import Timeline from './Timeline'
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
  */
 
-export { Footer, Header, Hero, Timeline }
+export { Footer, Header, Hero, SiteFooter, SiteHeader, SiteHero, Timeline }

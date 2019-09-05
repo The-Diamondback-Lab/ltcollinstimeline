@@ -1,5 +1,6 @@
 // Components
 import Event, { FeatureEvent } from './Event'
+import Events from './Events'
 
 /**
  * @file JSX Templates
@@ -7,4 +8,4 @@ import Event, { FeatureEvent } from './Event'
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
  */
 
-export { FeatureEvent, Event }
+export { Event, Events, FeatureEvent }

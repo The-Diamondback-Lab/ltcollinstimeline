@@ -4,6 +4,7 @@
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
  */
 
+import Dropdown from './Dropdown.jsx'
 import OptGroup from './OptGroup.jsx'
 
-export { OptGroup }
+export { Dropdown, OptGroup }

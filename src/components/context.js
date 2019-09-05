@@ -1,5 +1,5 @@
 // Packages
-import { createContext } from 'preact'
+import { createContext } from 'react'
 
 // Utilities
 import utils from '../util'

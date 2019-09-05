@@ -1,5 +1,5 @@
 // Packages
-import { h, Component } from 'preact'
+import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faImage, faLink } from '@fortawesome/free-solid-svg-icons'
 import $ from 'jquery'

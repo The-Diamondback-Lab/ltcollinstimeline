@@ -14,13 +14,15 @@ module.exports = api => {
       './design/*',
       './src/assets/*'
     ],
+    plugins: [
+      '@babel/plugin-proposal-class-properties',
+      '@babel/plugin-proposal-export-default-from',
+      '@babel/plugin-proposal-export-namespace-from',
+      '@babel/plugin-proposal-throw-expressions'
+    ],
     presets: [
-      [
-        'preact-cli/babel',
-        {
-          modules: 'commonjs'
-        }
-      ]
+      '@babel/preset-env',
+      '@babel/preset-react'
     ]
   }
 }

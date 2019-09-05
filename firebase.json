@@ -1,13 +1,32 @@
 {
   "hosting": {
-    "public": "public/",
-    "predeploy": [
-      "NODE_ENV=production npm run build"
+    "cleanUrls": true,
+    "ignore": [
+      "**/.*",
+      "**/node_modules/**",
+      "babel.config.js",
+      "firebase.json",
+      "jest.config.js"
     ],
+    "postdeploy": [
+      "rm -rf build/"
+    ],
+    "predeploy": [
+      "npm run lint",
+      "npm test",
+      "NODE_ENV=production",
+      "npm run build"
+    ],
+    "public": "build",
     "redirects": [
       {
         "source": "/:year/:month/:day/:title",
         "destination": "https://dbknews.com/:year/:month/:day/:title",
+        "type": 301
+      },
+      {
+        "source": "/prototype",
+        "destination": "https://xd.adobe.com/view/a56dd090-22fe-4e8b-638b-97b681620ce8-d35c/",
         "type": 301
       },
       {
@@ -22,17 +41,6 @@
         "destination": "/index.html"
       }
     ],
-    "cleanUrls": true,
-    "trailingSlash": false,
-    "ignore": [
-      "firebase.json",
-      "jest.config.js",
-      "now.json",
-      "preact.config.js",
-      "prerender-urls.json",
-      "**/.*",
-      "**/node_modules/**",
-      "**/tests/**"
-    ]
+    "trailingSlash": false
   }
 }

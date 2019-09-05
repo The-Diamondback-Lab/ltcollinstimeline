@@ -4,6 +4,7 @@
 
 ### Firebase ###
 .idea
+/functions/firebase-debug.log
 **/node_modules/*
 # **/.firebaserc
 
@@ -42,7 +43,7 @@ Temporary Items
 ### Node ###
 # Logs
 logs
-*.log
+**/*.log/**
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -129,7 +130,10 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
+# End of https://www.gitignore.io/api/node,macos,firebase
+
 # Build files
 build/
 
-# End of https://www.gitignore.io/api/node,macos,firebase
+# Credentials
+functions/config/credentials.firebase.json

@@ -1,0 +1,42 @@
+// ----------------------------------------------------------------------------
+// Footer specific styles, variables, placeholders, mixins and functions
+// @see components/organisms/Footer.jsx
+// @author Lexus Drumgold
+// ----------------------------------------------------------------------------
+
+// Variables
+$footer-height: auto
+$footer-padding: size(40) 0
+$footer-width: 100vw
+
+// Styles
+
+// Make footer full width
+// Add space on the top and bottom of footer
+.ado-footer
+  +size($footer-width, $footer-height)
+
+  background-color: $light
+
+  > .ada-container
+    padding: $footer-padding
+
+.footer-links
+  color: $light-gray
+  font-size: size(15)
+  font-weight: 300
+
+  > .ada-icon
+    margin-left: size(4)
+
+  > .ada-link
+    +event
+      color: $accent-med
+
+
+    color: $dark
+    margin: 0 size(4)
+    text-align: right
+
+    &:last-of-type
+      margin-right: 0

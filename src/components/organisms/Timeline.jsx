@@ -1,79 +1,61 @@
 // Packages
-import { h, Component, Fragment } from 'preact'
-
-// Context
-import { UIContext } from '../context'
+import React, { Component } from 'react'
 
 // Components
-import { Container } from '../atoms'
-import { Event } from '../templates'
+import { FeatureEvent, Events } from '../templates'
+
+// Event data
+import campus from '../../api/campus.events.json'
+import legal from '../../api/legal.events.json'
 
 /**
- * Class representing a timeline section.
+ * Component representing the timeline.
  *
  * @extends Component
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
  */
 export default class Timeline extends Component {
   /**
-   * Renders a timeline section with the base class 'ado-timeline'.
-   *
+   * Creates a new timeline.
+   * 
+   * @todo Update documentation
+   * 
    * @param {object} props - Component properties
-   * @param {string} props.class - Space delimitted list of extra classes
+   * @param {string} props.className - Space delimitted list of extra classes
    * @param {string} props.id - Element id
-   * @param {object} props.events - Object containing the keys 'campus' and
-   * 'legal', which map to an array of object events
-   * @param {object} state - Component state
-   * @returns {HTMLElement} HTML section element
+   * @returns {Timeline}
    */
-  render(props, state) {
-    const style = (`ado-timeline ${props.class ? props.class : ''}`).trim()
-    const { events, id } = props
-    const { campus, legal } = events
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
+
+  /**
+   * Renders a <main> element with the base class 'ado-timeline'.
+   *
+
+   * @param {object} state - Component state
+   * @returns {HTMLElement} HTML <main> element
+   */
+  render() {
+    const { className } = this.props
+    const style = (`ado-timeline ${className ? className : ''}`).trim()
 
     return (
-      <section id={id} class={style}>
-        <Container>
-          <UIContext.Consumer>
-            {({ mobile }) => {
-              return mobile
-                ? <TimelineColumn class='ui-stretch' events={this.events()} />
-                : <Fragment>
-                  <TimelineColumn class='ui-left ui-stretch' events={campus} />
-                  <div class='timeline-divider ui-stretch' />
-                  <TimelineColumn
-                    id='legal' class='ui-right ui-stretch' events={legal}
-                  />
-                </Fragment>
-            }}
-          </UIContext.Consumer>
-        </Container>
-      </section>
+      <main id={props.id} class={style}>
+        <Timeline
+          id='timeline0'
+          events={{
+            campus: props.events(campus, 0, 2),
+            legal: props.events(legal, 0, 2)
+          }}
+        />
+        <FeatureEvent id='feature0' class='ui-full' event={legal[0]} />
+        <Timeline events={{
+          campus: props.events(campus, 3, campus.length),
+          legal: props.events(legal, 1, legal.length)
+        }} />
+      </main>
     )
   }
-}
-
-/**
- * Functional component representing a timeline column.
- * Renders a <div> element with the base class 'timeline-col'.
- *
- * @param {object} props - Component properties
- * @param {string} props.class - Space delimitted list of extra classes
- * @param {string} props.id - Column event type
- * @param {object[]} props.events - Array of object events
- * @param {string} props.type - Column event type
- * @param {object} state - Component state
- * @returns {HTMLDivElement}
- */
-const TimelineColumn = props => {
-  const style = (`timeline-col ${props.class ? props.class : ''}`).trim()
-  const { events, id } = props
-
-  const type = id || 'campus'
-
-  return (
-    <div id={type} class={style}>
-      {events ? events.map(event => <Event type={type} {...event} />) : null}
-    </div>
-  )
 }
