@@ -8,7 +8,6 @@
     "build": "rm -rf ./build && NODE_ENV=production preact build --clean -p --no-prerender --template ./src/public/index.html",
     "now-build": "npm run build",
     "start": "npm run build && now"
-    "test": "mocha"
   },
   "dependencies": {
     "@feathersjs/errors": "^3.3.6",
