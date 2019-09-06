@@ -8,13 +8,17 @@
     "build": "rm -rf ./build && NODE_ENV=production preact build --clean -p --no-prerender --template ./src/public/index.html",
     "now-build": "npm run build",
     "start": "npm run build && now"
+    "test": "mocha"
   },
   "dependencies": {
     "@feathersjs/errors": "^3.3.6",
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "chai": "^4.2.0",
+    "express": "^4.17.1",
     "jquery": "^3.4.1",
+    "mocha": "^6.2.0",
     "preact": "^10.0.0-beta.2",
     "preact-cli-plugin-env-vars": "^1.2.1"
   },
@@ -88,5 +92,6 @@
   },
   "eslintIgnore": [
     "build/*"
-  ]
+  ],
+  "main": "jest.config.js"
 }
